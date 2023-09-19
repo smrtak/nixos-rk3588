@@ -10,7 +10,8 @@
 
 let
   boardName = "orangepi5";
-  rootPartitionUUID = "14e19a7b-0ae0-484d-9d54-43bd6fdc20c7";
+  rootPartitionLabel = "nixos-opi5";
+  srvPartitionLabel = "nixos-srv-opi5";
 in
 {
   imports = [
@@ -23,7 +24,7 @@ in
 
     # kernelParams copy from Armbian's /boot/armbianEnv.txt & /boot/boot.cmd
     kernelParams = [
-      "root=UUID=${rootPartitionUUID}"
+      "root=UUID=${rootPartitionLabel}"
       "rootwait"
       "rootfstype=ext4"
 
@@ -107,7 +108,7 @@ in
   };
 
   sdImage = {
-    inherit rootPartitionUUID;
+    inherit rootPartitionLabel;
 
     imageBaseName = "${boardName}-sd-image";
     compressImage = true;
